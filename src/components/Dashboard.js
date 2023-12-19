@@ -40,13 +40,13 @@ const Dashboard = () => {
 
     return (
         <React.Fragment>
-            <Grid container spacing={{ xs: 1, md: 2 }} columns={{ xs: 1, sm: 2, md: 9 }}>
+            <Grid container spacing={{ xs: 3, md: 10 }} columns={{ xs: 1, sm: 2, md: 6 }}>
                 <Grid item xs={1} sm={1} md={3}>
-                <Card sx={{ width: '100%', mt: 2, mb: 1, cursor: 'pointer', height: '45vh' }} raised  onClick={() => navigate('/CricketAccessories')}>
+                <Card sx={{ width: '100%', mt: 2, mb: 1, cursor: 'pointer', height: '100%' }} raised  >
             <CardActionArea>
         <CardMedia
           component="img"
-          height="300"
+          height="400"
           image={cricket}
           alt="green iguana"
         />
@@ -54,24 +54,37 @@ const Dashboard = () => {
           <Typography gutterBottom variant="h5" component="div">
             Cricket
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body1" color="text.secondary">
             click view to Purchase Cricket accessories
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
+      <CardActions sx={{
+        width: '100%',
+        // background: '#e6791440',
+        float: 'right',
+        padding: '20px'
+      }}>
+        <Button size="small" color="primary"
+        onClick={() => navigate('/CricketAccessories')}
+        sx={{
+          width: '100%',
+          color: 'white',
+          background: '#dd812b',
+          border: '0.5px solid grey'
+        }}
+        >
           View
         </Button>
       </CardActions>
             </Card>
             </Grid>
             <Grid item xs={1} sm={1} md={3}>
-            <Card sx={{ width: '100%', mt: 2, mb: 1, cursor: 'pointer', height: '45vh' }} raised  onClick={() => navigate('/expenditures')}>
+            <Card sx={{ width: '100%', mt: 2, mb: 1, cursor: 'pointer', height: '100%' }} raised  >
             <CardActionArea>
         <CardMedia
           component="img"
-          height="300"
+          height="400"
           image={football}
           alt="green iguana"
         />
@@ -79,76 +92,37 @@ const Dashboard = () => {
           <Typography gutterBottom variant="h5" component="div">
             Football
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="bod12" color="text.secondary">
           click view to Purchase Football accessories
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
+      <CardActions sx={{
+        width: '100%',
+        // background: '#e6791440',
+        float: 'right',
+        padding: '20px'
+      }}>
+        <Button size="small" color="primary"
+        onClick={() => navigate('/FootBallAccessories')}
+        sx={{
+          width: '100%',
+          color: 'white',
+          background: '#dd812b',
+          border: '0.5px solid grey'
+        }}
+        >
           View
         </Button>
       </CardActions>
             </Card>
         </Grid>
-            <Grid item xs={1} sm={1} md={3}>
-            <Card sx={{ width: '100%', mt: 2, mb: 1, cursor: 'pointer', height: '45vh' }} raised  onClick={() => navigate('/expenditures')}>
+    <Grid item xs={1} sm={1} md={3}>
+            <Card sx={{ width: '100%', mt: 2, mb: 1, cursor: 'pointer', height: '100%' }} raised  >
             <CardActionArea>
         <CardMedia
           component="img"
-          height="300"
-          width="50"
-          image={rugby}
-          alt="green iguana"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            Rugby
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-          click view to Purchase Rugby accessories
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          View
-        </Button>
-      </CardActions>
-            </Card>
-        </Grid>
-            <Grid item xs={1} sm={1} md={3}>
-            <Card sx={{ width: '100%', mt: 2, mb: 1, cursor: 'pointer', height: '45vh' }} raised  onClick={() => navigate('/expenditures')}>
-            <CardActionArea>
-        <CardMedia
-          component="img"
-          height="300"
-          width="50"
-          image={turf}
-          alt="green iguana"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            Book cricket Turf
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-          click view to Book Cricket turf accessories
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          View
-        </Button>
-      </CardActions>
-            </Card>
-        </Grid>
-            <Grid item xs={1} sm={1} md={3}>
-            <Card sx={{ width: '100%', mt: 2, mb: 1, cursor: 'pointer', height: '45vh' }} raised  onClick={() => navigate('/expenditures')}>
-            <CardActionArea>
-        <CardMedia
-          component="img"
-          height="300"
+          height="400"
           width="50"
           image={footBallturf}
           alt="green iguana"
@@ -157,18 +131,97 @@ const Dashboard = () => {
           <Typography gutterBottom variant="h5" component="div">
             Book football Turf
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="bod12" color="text.secondary">
           click view to Book Football turf accessories
+          </Typography>
+          <Typography variant="h6" color="text.secondary">
+            Price: €10
+          </Typography>
+          <Typography variant="h6" color="text.secondary">
+            Price ETH: 0.22
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          View
-        </Button>
+      <CardActions sx={{
+        width: '100%',
+        // background: '#e6791440',
+        float: 'right',
+        padding: '20px'
+      }}>
+      <Button size="small" color="primary" 
+      sx={{
+        width: '50%',
+        color: 'white',
+        background: '#dd812b',
+        border: '0.5px solid grey'
+      }}
+      >
+      Book with cash
+      </Button>
+      <Button size="small" color="primary"  sx={{
+        width: '50%',
+        color: 'white',
+        background: '#477ac6',
+        border: '0.5px solid grey'
+      }}>
+      Book with ETH
+      </Button>
       </CardActions>
             </Card>
         </Grid>
+            <Grid item xs={1} sm={1} md={3}>
+            <Card sx={{ width: '100%', mt: 2, mb: 1, cursor: 'pointer', height: '100%' }} raised >
+            <CardActionArea>
+        <CardMedia
+          component="img"
+          height="400"
+          width="50"
+          image={turf}
+          alt="green iguana"
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            Book cricket Turf
+          </Typography>
+          <Typography variant="bod12" color="text.secondary">
+          click view to Book Cricket turf accessories
+          </Typography>
+          <Typography variant="h6" color="text.secondary">
+            Price: €10
+          </Typography>
+          <Typography variant="h6" color="text.secondary">
+            Price ETH: 0.22
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+      <CardActions sx={{
+        width: '100%',
+        // background: '#e6791440',
+        float: 'right',
+        padding: '20px'
+      }}>
+      <Button size="small" color="primary" 
+      sx={{
+        width: '50%',
+        color: 'white',
+        background: '#dd812b',
+        border: '0.5px solid grey'
+      }}
+      >
+        Book with cash
+      </Button>
+      <Button size="small" color="primary"  sx={{
+        width: '50%',
+        color: 'white',
+        background: '#477ac6',
+        border: '0.5px solid grey'
+      }}>
+      Book with ETH
+      </Button>
+      </CardActions>
+            </Card>
+        </Grid>
+            
             </Grid>
         </React.Fragment>
     )

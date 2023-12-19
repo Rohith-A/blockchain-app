@@ -1,12 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/alt-text */
 import Logout from '@mui/icons-material/Logout';
-import { AppBar, Avatar, Box, Button, IconButton, ListItemIcon, Menu, MenuItem, Toolbar, Tooltip, Typography } from '@mui/material';
+import { Avatar, Box, Button, IconButton, ListItemIcon, Menu, MenuItem, Tooltip, Typography } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import * as actionTypes from '../actionTypes/actionTypes';
-import { addOrderSetup, approveSetup, contractConnect, getContractAccount, getOrderDetailsbyAddress } from '../utils/connectContract';
+import { addOrderSetup, approveSetup, getOrderDetailsbyAddress } from '../utils/connectContract';
 import NetworkConnection from '../utils/networkConnection';
 
 const logo = require('../logo/main-logo.png')
@@ -31,7 +30,7 @@ const Header = (props) => {
       // contractConnect();
     })
     useEffect(() => {
-      
+      connectNetwork()
       // getContractAccount();
       // getBalanceApple()
       // addOrderSetup( 'metamask', '0x56927Cb02919Ad5BB6dE10caC32619BB3AE5b3c9', 1, 'test_product', 'ball', 1, 'TEST123').then(v => console.log(v))

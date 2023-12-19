@@ -7,15 +7,15 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { Container } from '@mui/material';
 import { Provider } from "react-redux";
-import { BrowserRouter, Route, Routes, HashRouter } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import './App.css';
 import Analytics from './components/Analytics';
+import CricketAccessories from './components/CricketAccessories';
 import Dashboard from './components/Dashboard';
-import AllExpenditures from './components/ExpendituresData';
 import Footer from './components/footer';
 import Header from './components/header';
 import store from './store/store';
-import CricketAccessories from './components/CricketAccessories';
+import FootBallAccessories from './components/FootBallAccessories';
 function App(user) {
   return (
     <Provider store={store}>
@@ -26,12 +26,13 @@ function App(user) {
   <Header user={user}/>
   <Container maxWidth="lg" sx={{
     mt : 5,
-    mb: 25,
-    height: '100vh'
+    mb: 10,
+    height: '100%'
 }}>
       <Routes>
       <Route index path="/" element={<Dashboard />} />
         <Route path="/CricketAccessories" element={<CricketAccessories />} />
+        <Route path="/FootBallAccessories" element={<FootBallAccessories />} />
         <Route path="/analysis" element={<Analytics />} />
 
       </Routes>

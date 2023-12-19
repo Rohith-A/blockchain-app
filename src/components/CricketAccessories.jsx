@@ -3,11 +3,11 @@ import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Typo
 import Grid from '@mui/material/Grid';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { allExpenditures, getSavingsTarget, resetChartData } from '../actions/actions';
-import cricketData from '../data/cricket.json'
-
-const images = require('../product-images/SG-ball.webp')
+import {cricketData} from '../data/cricket'
+// import * as Productimages from '../product-images/cricket'
+// const images = require('../product-images/SG-ball.webp')
 const CricketAccessories = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -36,44 +36,69 @@ const CricketAccessories = () => {
     }, [expendituresData]);
 
     const setImage = (imgpath) => {
+      try{
         const image = require(imgpath);
         return image;
+      }catch(e) {
+        console.log(e)
+      }
     }
     return (
         <React.Fragment>
-            <Grid container spacing={{ xs: 1, md: 2 }} columns={{ xs: 1, sm: 2, md: 9 }}>
-
+            <Grid container spacing={{ xs: 3, md: 5 }} columns={{ xs: 1, sm: 2, md: 9 }} >
+            <Typography onClick={() => navigate('/')} variant="button" display="block"
+            sx={{ cursor:'pointer', m:2, position:'absolute',float:'left', fontSize: '15px'}} gutterBottom>
+           <Link >Home</Link> 
+           </Typography>
             {cricketData.map((ele) => (
-                <Grid item xs={1} sm={1} md={3}>
-                <Card sx={{ width: '100%', mt: 2, mb: 1, cursor: 'pointer', height: '45vh' }} raised  onClick={() => navigate('/expenditures')}>
+                <Grid item xs={1} sm={1} md={3} key={ele.name}>
+                <Card sx={{ width: '100%', mt: 2, mb: 1, cursor: 'pointer', height: '100%' }} raised  onClick={() => navigate('/expenditures')}>
             <CardActionArea>
         <CardMedia
           component="img"
-          height="300"
+          height="400"
           image={ele.img}
+          // image={images}
           alt="green iguana"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h4" component="div">
             {ele.name}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body1" color="text.secondary">
             {ele.description}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {ele.price}
+          <Typography variant="h6" color="text.secondary">
+            Price: {ele.price}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {ele.ETHprice}
+          <Typography variant="h6" color="text.secondary">
+            Price ETH: {ele.ETHprice}
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Buy
+      <CardActions sx={{
+        width: '100%',
+        // background: '#e6791440',
+        float: 'right',
+        padding: '20px'
+      }}>
+        <Button size="small" color="primary" 
+        sx={{
+          width: '50%',
+          color: 'white',
+          background: '#dd812b',
+          border: '0.5px solid grey'
+        }}
+        >
+          Buy with cash
         </Button>
-        <Button size="small" color="primary">
-          Buy
+        <Button size="small" color="primary"  sx={{
+          width: '50%',
+          color: 'white',
+          background: '#477ac6',
+          border: '0.5px solid grey'
+        }}>
+          Buy with ETH
         </Button>
       </CardActions>
             </Card>
