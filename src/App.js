@@ -7,7 +7,7 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { Container } from '@mui/material';
 import { Provider } from "react-redux";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, HashRouter } from "react-router-dom";
 import './App.css';
 import Analytics from './components/Analytics';
 import Dashboard from './components/Dashboard';
@@ -22,7 +22,7 @@ function App(user) {
     
    
   <div className="App">
-  <BrowserRouter>
+  <HashRouter>
   <Header user={user}/>
   <Container maxWidth="lg" sx={{
     mt : 5,
@@ -39,7 +39,7 @@ function App(user) {
       </Container>
   
 
-    </BrowserRouter>
+    </HashRouter>
     </div>
     <Footer />
     </Provider>
