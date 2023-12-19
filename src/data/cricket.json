@@ -1,0 +1,30 @@
+[
+    {
+        "name": "SG Ball",
+        "description": "SG leather ball",
+        "price": "€2.85",
+        "ETHprice": "0.1",
+        "img": "../product-images/SG-ball.webp"
+    },
+    {
+        "name": "Duke Ball",
+        "description": "Duke leather ball",
+        "price": "€2.85",
+        "ETHprice": "0.1",
+        "img": "../product-images/DukeBall.jpeg"
+    },
+    {
+        "name": "SS Bat",
+        "description": "SS English willow bat",
+        "price": "€5",
+        "ETHprice": "0.2",
+        "img": "../product-images/SS-bat.jpg"
+    },
+    {
+        "name": "GM Bat",
+        "description": "GM English willow bat",
+        "price": "€5",
+        "ETHprice": "0.2",
+        "img": "../product-images/GM-bat.jpeg"
+    }
+]
