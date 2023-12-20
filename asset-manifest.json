@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/blockchain-app/static/css/main.35a1b3dd.css",
-    "main.js": "/blockchain-app/static/js/main.28f29681.js",
+    "main.js": "/blockchain-app/static/js/main.fa900085.js",
     "static/js/787.1b94fe01.chunk.js": "/blockchain-app/static/js/787.1b94fe01.chunk.js",
     "static/media/football-turf.jpeg": "/blockchain-app/static/media/football-turf.00e7a4fec4cc9c2b5b29.jpeg",
     "static/media/football.png": "/blockchain-app/static/media/football.50fb0bb5ac8452767ec7.png",
@@ -91,11 +91,11 @@
     "static/media/roboto-greek-ext-700-normal.woff": "/blockchain-app/static/media/roboto-greek-ext-700-normal.249853776d22a271b2b5.woff",
     "index.html": "/blockchain-app/index.html",
     "main.35a1b3dd.css.map": "/blockchain-app/static/css/main.35a1b3dd.css.map",
-    "main.28f29681.js.map": "/blockchain-app/static/js/main.28f29681.js.map",
+    "main.fa900085.js.map": "/blockchain-app/static/js/main.fa900085.js.map",
     "787.1b94fe01.chunk.js.map": "/blockchain-app/static/js/787.1b94fe01.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.35a1b3dd.css",
-    "static/js/main.28f29681.js"
+    "static/js/main.fa900085.js"
   ]
 }
