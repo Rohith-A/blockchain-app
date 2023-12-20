@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/blockchain-app/static/css/main.35a1b3dd.css",
-    "main.js": "/blockchain-app/static/js/main.27df02a8.js",
+    "main.js": "/blockchain-app/static/js/main.28f29681.js",
     "static/js/787.1b94fe01.chunk.js": "/blockchain-app/static/js/787.1b94fe01.chunk.js",
     "static/media/football-turf.jpeg": "/blockchain-app/static/media/football-turf.00e7a4fec4cc9c2b5b29.jpeg",
     "static/media/football.png": "/blockchain-app/static/media/football.50fb0bb5ac8452767ec7.png",
@@ -20,7 +20,6 @@
     "static/media/addidas-gloves.jpg": "/blockchain-app/static/media/addidas-gloves.e9e9ca7293839f2fd047.jpg",
     "static/media/DukeBall.jpeg": "/blockchain-app/static/media/DukeBall.64fc8ff1f3254e0cfb3f.jpeg",
     "static/media/puma-shoes.jpg": "/blockchain-app/static/media/puma-shoes.9c201368725822a83dee.jpg",
-    "static/media/american-football-clipart-xl.png": "/blockchain-app/static/media/american-football-clipart-xl.13088fa262c0d9f677a6.png",
     "static/media/addidas-ball.jpg": "/blockchain-app/static/media/addidas-ball.5cda98af8398fffd52ca.jpg",
     "static/media/keeping-gloves.webp": "/blockchain-app/static/media/keeping-gloves.92f12afe446791f1cf9f.webp",
     "static/media/addidas-socks.webp": "/blockchain-app/static/media/addidas-socks.3ea8a3ba35b948e19999.webp",
@@ -92,11 +91,11 @@
     "static/media/roboto-greek-ext-700-normal.woff": "/blockchain-app/static/media/roboto-greek-ext-700-normal.249853776d22a271b2b5.woff",
     "index.html": "/blockchain-app/index.html",
     "main.35a1b3dd.css.map": "/blockchain-app/static/css/main.35a1b3dd.css.map",
-    "main.27df02a8.js.map": "/blockchain-app/static/js/main.27df02a8.js.map",
+    "main.28f29681.js.map": "/blockchain-app/static/js/main.28f29681.js.map",
     "787.1b94fe01.chunk.js.map": "/blockchain-app/static/js/787.1b94fe01.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.35a1b3dd.css",
-    "static/js/main.27df02a8.js"
+    "static/js/main.28f29681.js"
   ]
 }
