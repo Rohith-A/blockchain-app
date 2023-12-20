@@ -29,7 +29,7 @@ const AddnewCategory = () => {
   }, [])
 
   const addCategory = () => {
-    dispatch(categoryloader(true));
+    // dispatch(categoryloader(true));
     setError(false);
     dispatch(addNewCategory(
         newCategory

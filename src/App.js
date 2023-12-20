@@ -9,13 +9,15 @@ import { Container } from '@mui/material';
 import { Provider } from "react-redux";
 import { HashRouter, Route, Routes } from "react-router-dom";
 import './App.css';
-import Analytics from './components/Analytics';
 import CricketAccessories from './components/CricketAccessories';
 import Dashboard from './components/Dashboard';
+import FootBallAccessories from './components/FootBallAccessories';
+// import Orders from './components/Orders';
 import Footer from './components/footer';
 import Header from './components/header';
 import store from './store/store';
-import FootBallAccessories from './components/FootBallAccessories';
+import Checkout from './components/PaypalGateWay';
+import OrdersDetails from './components/Orders';
 function App(user) {
   return (
     <Provider store={store}>
@@ -33,7 +35,8 @@ function App(user) {
       <Route index path="/" element={<Dashboard />} />
         <Route path="/CricketAccessories" element={<CricketAccessories />} />
         <Route path="/FootBallAccessories" element={<FootBallAccessories />} />
-        <Route path="/analysis" element={<Analytics />} />
+        <Route path="/cashCheckout" element={<Checkout />} />
+        <Route path="/orderDetails" element={<OrdersDetails />} />
 
       </Routes>
      

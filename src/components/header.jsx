@@ -3,8 +3,8 @@
 import Logout from '@mui/icons-material/Logout';
 import { Avatar, Box, Button, IconButton, ListItemIcon, Menu, MenuItem, Tooltip, Typography } from '@mui/material';
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import { addOrderSetup, approveSetup, getOrderDetailsbyAddress } from '../utils/connectContract';
 import NetworkConnection from '../utils/networkConnection';
 
@@ -21,7 +21,7 @@ const Header = (props) => {
 
     const isWalletConnected = true;
     const { connectNetwork, logout } = NetworkConnection();
-    const walletData = 0;
+    const walletData = useSelector(state => state.wallet)
 
     const handleClose = () => {
       setAnchorEl(null);
@@ -30,7 +30,7 @@ const Header = (props) => {
       // contractConnect();
     })
     useEffect(() => {
-      connectNetwork()
+      // connectNetwork()
       // getContractAccount();
       // getBalanceApple()
       // addOrderSetup( 'metamask', '0x56927Cb02919Ad5BB6dE10caC32619BB3AE5b3c9', 1, 'test_product', 'ball', 1, 'TEST123').then(v => console.log(v))
@@ -66,7 +66,11 @@ const Header = (props) => {
         top: 0,
         zIndex: 9999
     }}>
-        
+    <Typography onClick={() => navigate('/')} variant="h6" display="block"
+    style={{ float:'left',  marginLeft: '20px', marginTop: '15px', cursor: 'pointer'}} gutterBottom>
+   <Link style={{color: 'white', textDecoration: 'none' }}>Home</Link> 
+   </Typography>
+    
        {/**
       <img src={logo} style={{ float:'left',  marginLeft: '20px', marginTop: '5px', cursor: 'pointer' }} 
         onClick={() => connectNetwork()} height={'60px'} width={'120px'}></img>
@@ -88,8 +92,8 @@ const Header = (props) => {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-          <Typography sx={{color: 'white', mr: 2}}>{props.user.user.username}</Typography>
-            <Avatar sx={{ width: 32, height: 32 }}>{`${props.user.user.username[0]}`.toUpperCase()}</Avatar>
+          <Typography sx={{color: 'white', mr: 2}}>{props?.user?.user?.username}</Typography>
+            <Avatar sx={{ width: 32, height: 32 }}>{`${props?.user?.user?.username[0]}`.toUpperCase()}</Avatar>
           </IconButton>
         </Tooltip>
       <Menu
@@ -140,8 +144,12 @@ const Header = (props) => {
           Logout
         </MenuItem>
       </Menu>
-      <Button variant="contained" onClick={submit} style={{width:"15%",height:'60%', position:'absolute',top:'1rem',right:'15rem', background:'none', boxShadow:'none', fontWeight:'600'}}>Connect Wallet</Button>
-    </Box>
+      {walletData ? (<Typography sx={{float:'left',  marginLeft: '20px', marginTop: '20px', cursor: 'pointer',color: 'white', background:'none', boxShadow:'none', fontWeight:'600'}}>{walletData.slice(0, 4)}...{walletData?.slice(-4)}</Typography>) : (
+        <Button variant="contained" onClick={() => connectNetwork()} style={{float:'left',  marginLeft: '20px', marginTop: '15px', cursor: 'pointer', background:'none', boxShadow:'none', fontWeight:'600'}}>Connect Wallet</Button>
+      )}
+      <Button variant="contained" onClick={() => navigate('orderDetails/')} style={{float:'left',  marginLeft: '20px', marginTop: '15px', cursor: 'pointer', background:'none', boxShadow:'none', fontWeight:'600'}}>Orders</Button>
+      
+      </Box>
     {  /* <Box sx={{ flexGrow: 1 }} className="nav-bar-box" >
       <AppBar position="static" style={{ backgroundColor: "#A3EEFF", padding: '10px'  }}>
         <Toolbar>

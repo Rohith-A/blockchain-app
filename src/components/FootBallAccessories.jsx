@@ -1,83 +1,156 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
+import { Box, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, LinearProgress, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setProductForBuying, showLoader } from '../actions/actions';
 import { footBallData } from '../data/football';
+import { addOrderSetup, approveSetup } from '../utils/connectContract';
+import { useNavigate } from 'react-router-dom';
 // import * as Productimages from '../product-images/cricket'
 // const images = require('../product-images/SG-ball.webp')
 const FootBallAccessories = () => {
-    const navigate = useNavigate();
-    // const dispatch = useDispatch();
-    // const userDetails = useSelector((state) => state.user)
-
- 
-
-
-    return (
-        <React.Fragment>
-            <Grid container spacing={{ xs: 3, md: 5 }} columns={{ xs: 1, sm: 2, md: 9 }} >
-            <Typography onClick={() => navigate('/')} variant="button" display="block"
-            sx={{ cursor:'pointer', m:2, position:'absolute',float:'left', fontSize: '15px'}} gutterBottom>
-           <Link >Home</Link> 
-           </Typography>
-            {footBallData.map((ele) => (
-                <Grid item xs={1} sm={1} md={3} key={ele.name}>
-                <Card sx={{ width: '100%', mt: 2, mb: 1, cursor: 'pointer', height: '100%' }} raised  onClick={() => navigate('/expenditures')}>
-            <CardActionArea>
-        <CardMedia
-          component="img"
-          height="400"
-          image={ele.img}
-          // image={images}
-          alt="green iguana"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h4" component="div">
-            {ele.name}
-          </Typography>
-          <Typography variant="body1" color="text.secondary">
-            {ele.description}
-          </Typography>
-          <Typography variant="h6" color="text.secondary">
-            Price: {ele.price}
-          </Typography>
-          <Typography variant="h6" color="text.secondary">
-            Price ETH: {ele.ETHprice}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions sx={{
-        width: '100%',
-        // background: '#e6791440',
-        float: 'right',
-        padding: '20px'
-      }}>
-        <Button size="small" color="primary" 
-        sx={{
-          width: '50%',
-          color: 'white',
-          background: '#dd812b',
-          border: '0.5px solid grey'
-        }}
-        >
-          Buy with cash
-        </Button>
-        <Button size="small" color="primary"  sx={{
-          width: '50%',
-          color: 'white',
-          background: '#477ac6',
-          border: '0.5px solid grey'
-        }}>
-          Buy with ETH
-        </Button>
-      </CardActions>
-            </Card>
-            </Grid>
-            ))}
-            </Grid>
-        </React.Fragment>
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [open, setOpen] = React.useState(false);
+  const walletData = useSelector(state => state.wallet)
+  const loader = useSelector(state => state.showLoader)
+  const [progress, setProgress] = useState(false);
+  const [product, setProduct] = useState({});
+  //   const state = useSelector((state) => state)
+  const handleClickOpen = (prd) => {
+    setOpen(true);
+    setProduct(prd)
+  };
+  const submit = (product) => {
+    addOrderSetup('metamask', walletData, product.id, product.name, product.desc, product.price).then(v => {
+      console.log(v)
+      showLoader(false)
+      setProgress(false)
+      alert(`Your booking for ${product.name} is successful`)
+    }
     )
+  }
+  useEffect(() => {
+    setProgress(loader)
+  }, [loader])
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const approve = (product) => {
+    showLoader(true)
+    setProgress(true)
+    const spender_address = process.env.REACT_APP_ORDER_CONTRACT
+    approveSetup('metamask', walletData, spender_address, product.price).then(v =>
+      submit(product)
+    )
+  }
+
+
+
+  return (
+    <React.Fragment>
+      {progress && (<Box sx={{ width: '100%', m: 6 }}><LinearProgress /></Box>)}
+
+      <Grid container spacing={{ xs: 3, md: 5 }} columns={{ xs: 1, sm: 2, md: 9 }} >
+        {footBallData.map((ele) => (
+          <Grid item xs={1} sm={1} md={3} key={ele.name}>
+            <Card sx={{ width: '100%', mt: 2, mb: 1, cursor: 'pointer', height: '100%' }} raised>
+              <CardActionArea>
+                <CardMedia
+                  component="img"
+                  height="400"
+                  image={ele.img}
+                  // image={images}
+                  alt="green iguana"
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h4" component="div">
+                    {ele.name}
+                  </Typography>
+                  <Typography variant="body1" color="text.secondary">
+                    {ele.description}
+                  </Typography>
+                  <Typography variant="h6" color="text.secondary">
+                    Price: {ele.price}
+                  </Typography>
+                  <Typography variant="h6" color="text.secondary">
+                    Price ETH: {ele.ETHprice}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+              <CardActions sx={{
+                width: '100%',
+                // background: '#e6791440',
+                float: 'right',
+                padding: '20px'
+              }}>
+                <Button size="small"
+                onClick={() => {
+                  dispatch(setProductForBuying({
+                    image: ele.img,
+                    price: ele.price.split('€')[1], name: ele.name, desc: ele.description
+                  }))
+                  navigate('/cashCheckout')
+                }
+                }
+                color="primary"
+                  sx={{
+                    width: '50%',
+                    color: 'white',
+                    background: '#dd812b',
+                    border: '0.5px solid grey'
+                  }}
+                >
+                  Buy with cash
+                </Button>
+                <Button size="small" color="primary"
+                  onClick={() => { handleClickOpen(ele) }}
+                  sx={{
+                    width: '50%',
+                    color: 'white',
+                    background: '#477ac6',
+                    border: '0.5px solid grey'
+                  }}>
+                  Buy with ETH
+                </Button>
+              </CardActions>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="responsive-dialog-title"
+      >
+        <DialogTitle id="responsive-dialog-title">
+          {"Pay with Ether"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            You will be redirected to wallet for payment. Would you like to proceed
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleClose}>
+            No
+          </Button>
+          <Button onClick={() => {
+            approve({
+              name: product.name,
+              desc: product.description,
+              id: Math.floor(Math.random() * 10000),
+              price: product.ETHprice
+            })
+            handleClose()
+          }} autoFocus>
+            Yes
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </React.Fragment>
+  )
 }
 
 // To make those two function works register it using connect

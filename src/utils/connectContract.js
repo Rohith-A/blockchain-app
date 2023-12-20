@@ -273,7 +273,16 @@ export const getOrderDetailsbyAddress = async (conn_provider, w_address) => {
     return await orderContract.methods.getOrderDetailsByAddress(w_address)
       .call()
       .then((isRegistered) => {
+        const data = []
+        isRegistered.forEach((v) => {
+            data.push({
+                id: v.id,
+                price: v.price,
+                desc: v.product_description,
+                name: v.product_name,
+            })
+        })
         console.log(isRegistered, "isRegistered")
-        return isRegistered
+        return data
       })
   }
